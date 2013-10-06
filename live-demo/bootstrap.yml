@@ -1,0 +1,34 @@
+---
+- hosts: all
+  sudo: true
+  # What tasks do we need to run?
+  vars:
+    - domain: demo.dev
+  tasks:
+  - name: make sure we can connect
+    action: ping
+  # Install apache, php, mysql, git
+  - name: apt-get update
+    apt: update_cache=yes
+  - name: install apache
+    apt: pkg=apache2 state=installed
+  - name: install php5
+    apt: pkg=php5 state=installed
+  - name: install mysql-server
+    apt: pkg=mysql-server state=installed
+  - name: install git
+    apt: pkg=git state=installed
+  # Create a vhost
+  - name: create vhost
+    template: src=templates/demo dest=/etc/apache2/sites-enabled
+    notify:
+      - restart apache
+  # Clone a repo
+  - name: clone repo
+    git: repo=https://github.com/mheap/demo.git dest=/var/www/demo
+  # Notification handlers
+  handlers:
+    - name: restart apache
+      service: name=apache2 state=restarted
+
+

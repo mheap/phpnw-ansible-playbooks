@@ -1,0 +1,5 @@
+---
+- name: install PHP
+  apt: pkg=php5 state=installed
+  sudo: true
+

@@ -1,0 +1,10 @@
+---
+- name: install apache
+  apt: pkg=apache2 state=installed
+  sudo: true
+
+- name: add vhost
+  template: src=demo.j2 dest=/etc/apache2/sites-enabled/demo
+  sudo: true
+  notify:
+    - restart apache

@@ -1,0 +1,8 @@
+---
+- name: install git
+  apt: pkg=git state=installed
+  sudo: true
+
+- name: clone repo
+  git: repo=https://github.com/mheap/demo.git dest=/var/www/demo
+  sudo: true
