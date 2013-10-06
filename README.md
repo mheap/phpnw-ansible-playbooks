@@ -7,6 +7,8 @@ Download and install Virtualbox + Vagrant
 * https://www.virtualbox.org/wiki/Downloads
 * http://downloads.vagrantup.com/
 
+You'll also need to [install Ansible](http://www.ansibleworks.com/docs/gettingstarted.html)
+
 # Running things
 
 Clone this repo and run `vagrant up` and wait. It'll take a while on the first run whilst it downloads the base image.
